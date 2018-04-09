@@ -25,9 +25,10 @@ train_datagen = ImageDataGenerator(
 ```
 
 ## Building CNN Model Using Keras
-The model is constructed by using Keras' sequential model. The structure of the model can be seen as below.
+The model is constructed by using Keras' sequential model. The structure of the model can be seen as below. Every cov layer is attached with 'relu' activation function, as it is said to be one of the best practice to start with. Only the last fully connected layer uses 'sigmoid' to generate probability output in order to be transformed to binary classification. 
+The network capacity (number of layers, number of filters of cov) is decided by try and error. If the validation loss is decreasing as the capacity growth, I keep increase the capacity until the validation loss increased. In addition, pooling layers and dropout layers are added if overfitting can be observed. Learning rate is set to 0.2 by default in ```keras.optimizers.Adamax```
 
-```python
+```
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================

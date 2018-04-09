@@ -11,7 +11,7 @@ I identified the drawbacks of this image classifier and try to make improvement 
 The training data for the model is acquired from ImageNet, a database that is designed for computer vision research. For collecting hotdog images, "hotdog", "sausage", "frankfurter" are used. For pizza, the keywords "pizza" is already enough to collect comparable amounts as the hotdog.
 
 ## Data Preparation/Augmentation
-Since we have very little amount of images, about 1500 each category. We can utilize the augmentation methods that are already provided by Keras to fully utilize the images and to prevent the model from overfitting. For instance, zom_range can randomly zoom in images. These methods can prevent the model from training with the exactly same image again. The augmentation techniques I used are as follow.
+Since we have very little amount of images, about 1500 each category. We can utilize the augmentation methods that are already provided by Keras to fully utilize the images and to prevent the model from overfitting. For instance, ```zom_range``` can randomly zoom in images. These methods can prevent the model from training with the same image again. The augmentation techniques I used are as follow.
 ```python
 train_datagen = ImageDataGenerator(
     rescale=1. / 255,
@@ -27,7 +27,8 @@ train_datagen = ImageDataGenerator(
 
 ## Building CNN Model Using Keras
 The model is constructed by using Keras' sequential model. The structure of the model can be seen as below. Every cov layer is attached with 'relu' activation function, as it is said to be one of the best practice to start with. Only the last fully connected layer uses 'sigmoid' to generate probability output in order to be transformed to binary classification. 
-The network capacity (number of layers, number of filters of cov) is decided by try and error. If the validation loss is decreasing as the capacity growth, I keep increase the capacity until the validation loss increased. In addition, pooling layers and dropout layers are added if overfitting can be observed. Learning rate is set to 0.2 by default in ```keras.optimizers.Adamax```
+
+The network capacity (number of layers, number of filters of cov) is decided by try and error. If the validation loss is decreasing as the capacity growth, I keep increasing the capacity until the validation loss increased. In addition, pooling layers and dropout layers are added if overfitting can be observed. Learning rate is set to 0.002 by default in ```keras.optimizers.Adamax```, although I play around a bit with it, 0.002 seems to be the most promising one.
 
 ```
 _________________________________________________________________
@@ -66,3 +67,10 @@ Non-trainable params: 0
 _________________________________________________________________
 
 ## Model Evaluation
+![Validation Score](https://github.com/Witsung/Not_Hotdog_CNN/blob/master/Validation%20Score.png)
+
+Early stopping is used to stop training the model when the validation score is not improving in 5 epochs. So the training stops at 20th epochs.
+
+![Accuracy](https://github.com/Witsung/Not_Hotdog_CNN/blob/master/Accuracy.png)
+
+As one can see from the graph, the training accuracy is generally below test accuracy and the training stops before the model starts to overfit. The accuracy of the final epoch is 82%.

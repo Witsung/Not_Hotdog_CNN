@@ -5,7 +5,7 @@ This creation of this model is inspired by the tv series Silicon Valley, which J
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/ACmydtFDTGs/0.jpg)](https://www.youtube.com/watch?v=ACmydtFDTGs)
 
-I identified the drawbacks of this image classifier and try to make improvement base on Jian yang's idea. Thus, I decided to extend the functions of the app to make it possible to identify pizza as well! This function turns the classifier into a Hotdog/Pizza images classifier.
+I identified the drawbacks of this image classifier and try to make improvement base on Jian yang's idea. Thus, I decided to extend the functions of the app to make it possible to identify pizza as well. This function turns the classifier into a Hotdog/Pizza images classifier. Wow! that's useful, isn't it?
 
 ## Data Collection
 The training data for the model is acquired from ImageNet, a database that is designed for computer vision research. For collecting hotdog images, "hotdog", "sausage", "frankfurter" are used. For pizza, the keywords "pizza" is already enough to collect comparable amounts as the hotdog.
